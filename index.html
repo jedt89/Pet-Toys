@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peludo's Outlet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Protest+Riot&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/981278a700.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./src/assets/css/styles.css" />
+    <link
+      rel="shortcut icon"
+      class="img-toggle"
+      href="./src/assets/img/favicon1.png"
+      type="image/x-icon"
+    />
+  </head>
+
+  <body class="home-container">
+    <nav class="nav-container">
+      <div id="filter-toggle">
+        <p>Filtros</p>
+        <div class="toggle-container">
+          <input
+            type="checkbox"
+            name="check-toggle"
+            id="check-filter"
+            hidden=""
+          />
+          <label for="check-filter" class="toggle">
+            <div class="toggle__circle"></div>
+          </label>
+        </div>
+      </div>
+      <div class="nav-title" onclick="reloadPage()">
+        <h2>Peludo's Outlet</h2>
+      </div>
+      <div class="brand">
+        <img src="./src/assets/img/brand.svg" alt="logo" />
+      </div>
+    </nav>
+    <main class="main-container">
+      <div class="side-container">
+        <p class="title-type">Filtros</p>
+        <div id="side-menu" class="side-menu slide-in-bottom"></div>
+      </div>
+      <div class="content-container">
+        <div class="catalog-container">
+          <p id="title-catalog" class="title-type">Perros</p>
+          <div id="articles-container" class="catalog"></div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer-container">
+      <div class="media-footer">
+        <h2>Contacto</h2>
+        <p>Si te gustaría que en un futuro trabajemos juntos, contáctame.</p>
+        <div class="social">
+          <a
+            class="social-img"
+            href="https://github.com/jedt89"
+            target="_blank"
+          >
+            <img src="./src/assets/img/github-icon.png" alt="GitHub icon" />
+          </a>
+          <a
+            class="social-img"
+            href="https://www.linkedin.com/in/jonathan-diaz-tobar-241572186"
+            target="_blank"
+          >
+            <img src="./src/assets/img/linkedin_icon.png" alt="Linkedin icon" />
+          </a>
+
+          <a class="social-img" href="https://wa.me/1234567890" target="_blank">
+            <img src="./src/assets/img/whatsapp_icon.png" alt="Whatsapp icon" />
+          </a>
+        </div>
+      </div>
+      <h4>Jonathan Díaz</h4>
+      <h4>Desarrollador Front End</h4>
+      <h4>Desarrollo Full Stack - Academia Desafío Latam - 2024</h4>
+    </footer>
+  </body>
+  <script src="./src/assets/js/app.js"></script>
+</html>
