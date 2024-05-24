@@ -2,6 +2,8 @@
 * {
   transition: all 0.1s linear;
   color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 body {
