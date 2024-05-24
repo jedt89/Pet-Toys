@@ -253,13 +253,13 @@ const showLoader = () => {
   setTimeout(() => {
     loader.classList.remove('fade-in');
     loader.classList.add('fade-out');
-  }, 1000);
+  }, 1300);
 
   setTimeout(() => {
     loader.classList.remove('loader');
     loader.style.display = 'none';
     loader.classList.add('fade-out');
-  }, 1200);
+  }, 1500);
 };
 
 const reloadPage = () => location.reload();
