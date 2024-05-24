@@ -37,6 +37,12 @@ a {
   text-decoration: none;
 }
 
+/* Utils */
+
+.hidden {
+  display: none;
+}
+
 /* Elements */
 .home-container {
   display: grid;
@@ -453,7 +459,7 @@ a {
 .slide-out-bottom {
   animation: slide-out-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   opacity: 0;
-  height: 0;
+  height: auto;
 }
 
 .rotate-center {

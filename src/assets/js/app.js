@@ -1,7 +1,7 @@
 let toggleFilter = true;
 const mainContainer = document.querySelector('.main-container');
 const articlesContainer = document.querySelector('#articles-container');
-const sideContainer = document.querySelector('.side-container');
+const sideContainer = document.querySelector('#side-container');
 const sideMenu = document.querySelector('#side-menu');
 const navToggle = document.querySelector('#check-filter');
 const titleCatalog = document.querySelector('#title-catalog');
@@ -231,36 +231,30 @@ const applyFilters = (id) => {
 
 navToggle.addEventListener('click', () => {
   if (navToggle.checked) {
-    sideContainer.style.display = '';
+    sideContainer.classList.remove('hidden');
     sideContainer.classList.remove('slide-out-bottom');
     sideContainer.classList.add('slide-in-bottom');
-    sideContainer.style.display = '';
+    sideContainer.classList.add('side-container');
   } else {
     sideContainer.classList.remove('slide-in-bottom');
     sideContainer.classList.add('slide-out-bottom');
-    setTimeout(() => {
-      sideContainer.style.display = 'none';
-    }, 500);
   }
 });
 
 const showLoader = () => {
   loader.style.display = 'grid';
   loader.classList.remove('fade-out');
-  loader.classList.add('fade-in');
-  loader.classList.add('loader');
+  loader.classList.add('fade-in', 'loader');
 
   setTimeout(() => {
-    loader.classList.remove('fade-in');
-    loader.classList.add('fade-out');
+    loader.classList.replace('fade-in', 'fade-out');
+    setTimeout(() => {
+      loader.classList.remove('loader', 'fade-out');
+      loader.style.display = 'none';
+    }, 200);
   }, 1300);
-
-  setTimeout(() => {
-    loader.classList.remove('loader');
-    loader.style.display = 'none';
-    loader.classList.add('fade-out');
-  }, 1500);
 };
+
 
 const reloadPage = () => location.reload();
 
@@ -270,6 +264,15 @@ const init = async () => {
   generateFilters('all-filter');
   navToggle.checked = true;
   titleCatalog.textContent = 'Todos';
+  sideContainer.classList.remove('hidden');
+  sideContainer.classList.add('side-container');
 };
+
+sideContainer.addEventListener('animationend', () => {
+  const show = navToggle.checked;
+  sideContainer.classList.remove('slide-in-bottom', 'slide-out-bottom');
+  sideContainer.classList.toggle('side-container', show);
+  sideContainer.classList.toggle('hidden', !show);
+});
 
 init();
