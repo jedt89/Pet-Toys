@@ -5,16 +5,17 @@ const sideContainer = document.querySelector('.side-container');
 const sideMenu = document.querySelector('#side-menu');
 const navToggle = document.querySelector('#check-filter');
 const titleCatalog = document.querySelector('#title-catalog');
+const loader = document.querySelector('#loader');
 
 const cat = [
   {
-    title: 'Arnés para gatos con moño + traílla ergonómico - M',
-    price: '$ 5.490',
+    title: 'Cojin - cama para gatos',
+    price: '$ 74.990',
     type: 'cat'
   },
   {
-    title: 'Rueda para gatos',
-    price: '$ 74.990',
+    title: 'Arnés para gatos con moño + traílla ergonómico - M',
+    price: '$ 5.490',
     type: 'cat'
   },
   {
@@ -193,24 +194,27 @@ const generateFilters = () => {
 };
 
 const applyFilters = (id) => {
-  switch (id) {
-    case 'cat-filter':
-      getArticles(cat);
-      titleCatalog.textContent = 'Gatos';
-      break;
-    case 'dog-filter':
-      getArticles(dog);
-      titleCatalog.textContent = 'Perros';
-      break;
-    case 'rabbit-filter':
-      getArticles(rabbit);
-      titleCatalog.textContent = 'Conejos';
-      break;
-    default:
-      getArticles([...cat, ...dog, ...rabbit]);
-      titleCatalog.textContent = 'Todos';
-      break;
-  }
+  showLoader();
+  setTimeout(() => {
+    switch (id) {
+      case 'cat-filter':
+        getArticles(cat);
+        titleCatalog.textContent = 'Gatos';
+        break;
+      case 'dog-filter':
+        getArticles(dog);
+        titleCatalog.textContent = 'Perros';
+        break;
+      case 'rabbit-filter':
+        getArticles(rabbit);
+        titleCatalog.textContent = 'Conejos';
+        break;
+      default:
+        getArticles([...cat, ...dog, ...rabbit]);
+        titleCatalog.textContent = 'Todos';
+        break;
+    }
+  }, 500);
 };
 
 navToggle.addEventListener('click', () => {
@@ -228,10 +232,28 @@ navToggle.addEventListener('click', () => {
   }
 });
 
+const showLoader = () => {
+  loader.style.display = 'grid';
+  loader.classList.remove('fade-out');
+  loader.classList.add('fade-in');
+  loader.classList.add('loader');
+
+  setTimeout(() => {
+    loader.classList.remove('fade-in');
+    loader.classList.add('fade-out');
+  }, 2000);
+
+  setTimeout(() => {
+    loader.classList.remove('loader');
+    loader.style.display = 'none';
+    loader.classList.add('fade-out');
+  }, 2200);
+};
 
 const reloadPage = () => location.reload();
 
 const init = async () => {
+  showLoader();
   getArticles([...cat, ...dog, ...rabbit]);
   generateFilters('all-filter');
   navToggle.checked = true;
