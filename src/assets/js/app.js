@@ -229,18 +229,30 @@ const applyFilters = (id) => {
   }, 500);
 };
 
-navToggle.addEventListener('click', () => {
+const checkViewport = ()=> {
+  const media = window.matchMedia('(width >= 768px)');
+  const home = document.querySelector('#home')
+  const contentContainer = document.querySelector('#content-container')
   if (navToggle.checked) {
     sideContainer.classList.remove('hidden');
     sideContainer.classList.remove('slide-out-bottom');
     sideContainer.classList.add('slide-in-bottom');
     sideContainer.classList.add('side-container');
+
+    if (!media.matches) {
+      home.style.overflow = 'hidden';
+      contentContainer.style.opacity = '0';
+    } else {
+      home.style.overflow = 'scroll';
+      contentContainer.style.opacity = '1';
+    }
   } else {
     sideContainer.classList.remove('slide-in-bottom');
     sideContainer.classList.add('slide-out-bottom');
+    home.style.overflow = 'scroll';
+    contentContainer.style.opacity = '1';
   }
-});
-
+}
 const showLoader = () => {
   loader.style.display = 'grid';
   loader.classList.remove('fade-out');
@@ -255,7 +267,6 @@ const showLoader = () => {
   }, 1300);
 };
 
-
 const reloadPage = () => location.reload();
 
 const init = async () => {
@@ -268,6 +279,9 @@ const init = async () => {
   sideContainer.classList.add('side-container');
 };
 
+// Listeners
+window.addEventListener('resize', () => checkViewport());
+navToggle.addEventListener('click', () => checkViewport());
 sideContainer.addEventListener('animationend', () => {
   const show = navToggle.checked;
   sideContainer.classList.remove('slide-in-bottom', 'slide-out-bottom');
