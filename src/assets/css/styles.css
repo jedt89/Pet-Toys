@@ -48,38 +48,44 @@ a {
 }
 
 .nav-container {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    'navTitle navTitle'
+    'brand navActions';
   justify-content: space-between;
   align-items: center;
   grid-area: navContainer;
   background: rgb(30 0 33 / 15%);
   backdrop-filter: blur(10px);
-  align-items: baseline;
   padding: 0.5rem 1rem 0rem 1rem;
   position: sticky;
   top: 0;
-  z-index: 995;
+  z-index: 998;
   margin-bottom: 2rem;
-
-  img {
-    max-width: 50px;
-  }
 }
 
 .nav-title {
+  grid-area: navTitle;
+
   h2 {
     font-family: 'Protest Riot', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 2rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
     cursor: pointer;
   }
 }
 
-.nav-title:hover {
-  h2 {
+.nav-title:hover h2 {
     color: orange;
-  }
+}
+
+.nav-actions {
+  grid-area: navActions;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .toggle-container:hover {
@@ -96,10 +102,6 @@ a {
   align-items: center;
   gap: 1rem;
   border-radius: 10px;
-
-  p {
-    display: none;
-  }
 }
 
 #img-toggle {
@@ -107,18 +109,20 @@ a {
 }
 
 .brand {
+  grid-area: brand;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 
   img {
-    height: 3rem;
-    border-radius: 10px;
+    height: 2rem;
+    border-radius: 5px;
   }
 }
 
 .brand img:hover {
   box-shadow: 0px 0px 10px 1px white;
-  transform: translateY(-20px);
+  transform: translateY(-15px);
+  scale: 1.1;
   cursor: pointer;
 }
 
@@ -139,6 +143,13 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: sticky;
+  top: 8rem;
+  z-index: 996;
+  background: rgb(72 11 52 / 81%);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 1rem 0rem;
 }
 
 .side-menu {
@@ -153,11 +164,13 @@ a {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   padding: 1rem;
+  width: 75%;
 }
 
 .content-container {
   text-align: center;
   font-style: normal;
+  padding: 1rem;
 
   h4 {
     align-content: center;
@@ -402,11 +415,11 @@ a {
   transform: rotate(-20deg);
 }
 
-#check-filter:checked + .toggle > .toggle__circle {
+#check-filter:checked+.toggle>.toggle__circle {
   margin-left: calc(75px - (0.3rem * 2) - 50px);
 }
 
-#check-filter:checked + .toggle {
+#check-filter:checked+.toggle {
   --bg-toggle: hsl(96, 85%, 34%);
   --bg-circle: hsl(0, 0%, 96%);
 }
@@ -522,6 +535,7 @@ a {
 }
 
 @keyframes shake-bottom {
+
   0%,
   100% {
     transform: rotate(0deg);
@@ -564,6 +578,7 @@ a {
 }
 
 @keyframes wobble-hor-bottom {
+
   0%,
   100% {
     transform: translateX(0);
@@ -619,6 +634,12 @@ a {
   }
 }
 
+@media screen and (width <= 320px) {
+  .side-container {
+    top: 12rem;
+  }
+}
+
 @media screen and (width >=576px) {
   .main-container {
     grid-template-columns: auto auto;
@@ -631,6 +652,8 @@ a {
   .nav-container {
     gap: 2rem;
     padding: 15px 2rem 0rem 2rem;
+    flex-direction: row;
+    align-items: center;
   }
 
   .nav-title {
@@ -639,13 +662,32 @@ a {
     }
   }
 
+  .side-container {
+    position: static;
+    top: auto;
+    background: transparent;
+    backdrop-filter: none;
+    margin: 0;
+  }
+
+  .side-menu {
+    width: auto;
+  }
+
+  .content-container {
+    padding: 0px;
+  }
+  .catalog {
+    padding-top: 1rem;
+  }
+
   .card {
     max-width: 16rem;
   }
+}
 
-  #filter-toggle {
-    p {
-      display: block;
-    }
+@media screen and (width >= 768px) {
+  .nav-container {
+    grid-template-areas: 'brand navTitle navActions';
   }
 }

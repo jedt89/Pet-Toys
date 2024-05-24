@@ -142,7 +142,8 @@ const filters = [
   { id: 'cat-filter', label: 'Gatos' },
   { id: 'dog-filter', label: 'Perros' },
   { id: 'rabbit-filter', label: 'Conejos' },
-  { id: 'all-filter', label: 'Mostrar todo' }
+  { id: 'all-filter', label: 'Mostrar todo' },
+  { id: 'contact', label: 'Contacto' }
 ];
 
 const getArticles = (articles) => {
@@ -165,6 +166,11 @@ const getArticles = (articles) => {
     `;
     articlesContainer.insertAdjacentHTML('beforeend', card);
   });
+
+  const query = window.matchMedia('(width >= 768px)');
+  if (!query.matches) {
+    navToggle.click();
+  }
 };
 
 const generateFilters = () => {
@@ -180,14 +186,20 @@ const generateFilters = () => {
       case 'Conejos':
         imageSrc = './src/assets/img/rabbit_avatar';
         break;
+      case 'Contacto':
+        imageSrc = './src/assets/img/contact';
+        break;
       default:
         imageSrc = './src/assets/img/all_avatar';
     }
     const filterCard = `
-    <div class="filter-card" onclick="applyFilters('${id}')">
-      <img src="${imageSrc}.png" alt="${label}">
-      <p>${label}</p>
-    </div>
+    
+      <a href='#${label == 'Contacto' ? 'contact' : 'main'}'>
+        <div class="filter-card" onclick="applyFilters('${id}')">
+          <img src="${imageSrc}.png" alt="${label}">
+          <p>${label}</p>
+        </div>
+      </a>  
     `;
     sideMenu.insertAdjacentHTML('beforeend', filterCard);
   });
