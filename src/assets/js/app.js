@@ -171,6 +171,7 @@ const getArticles = (articles) => {
   if (!query.matches) {
     navToggle.click();
   }
+  document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 const generateFilters = () => {
@@ -193,8 +194,7 @@ const generateFilters = () => {
         imageSrc = './src/assets/img/all_avatar';
     }
     const filterCard = `
-    
-      <a href='#${label == 'Contacto' ? 'contact' : 'main'}'>
+      <a href='#${label == 'Contacto' ? 'contact' : 'none'}'>
         <div class="filter-card" onclick="applyFilters('${id}')">
           <img src="${imageSrc}.png" alt="${label}">
           <p>${label}</p>
