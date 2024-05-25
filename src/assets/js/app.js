@@ -171,7 +171,6 @@ const getArticles = (articles) => {
   if (!query.matches) {
     navToggle.click();
   }
-  document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 const generateFilters = () => {
@@ -227,16 +226,17 @@ const applyFilters = (id) => {
         break;
     }
   }, 500);
+  if (id != 'contact') document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
-const checkViewport = ()=> {
+const checkViewport = (resize)=> {
   const media = window.matchMedia('(width >= 575px)');
   const home = document.querySelector('#home')
   const contentContainer = document.querySelector('#content-container')
-  if (navToggle.checked) {
+  if (navToggle.checked ) {
     sideContainer.classList.remove('hidden');
     sideContainer.classList.remove('slide-out-bottom');
-    sideContainer.classList.add('slide-in-bottom');
+    if (!resize) sideContainer.classList.add('slide-in-bottom');
     sideContainer.classList.add('side-container');
 
     if (!media.matches) {
@@ -287,5 +287,8 @@ sideContainer.addEventListener('animationend', () => {
   sideContainer.classList.toggle('side-container', show);
   sideContainer.classList.toggle('hidden', !show);
 });
+
+window.addEventListener('resize', () => checkViewport(true)); // FORCE UPDATE FOR TESTING
+
 
 init();
