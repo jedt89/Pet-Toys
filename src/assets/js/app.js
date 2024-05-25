@@ -280,7 +280,6 @@ const init = async () => {
 };
 
 // Listeners
-window.addEventListener('resize', () => checkViewport());
 navToggle.addEventListener('click', () => checkViewport());
 sideContainer.addEventListener('animationend', () => {
   const show = navToggle.checked;
