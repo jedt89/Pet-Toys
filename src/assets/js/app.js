@@ -230,7 +230,7 @@ const applyFilters = (id) => {
 };
 
 const checkViewport = ()=> {
-  const media = window.matchMedia('(width >= 768px)');
+  const media = window.matchMedia('(width >= 575px)');
   const home = document.querySelector('#home')
   const contentContainer = document.querySelector('#content-container')
   if (navToggle.checked) {
