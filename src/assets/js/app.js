@@ -10,7 +10,7 @@ const loader = document.querySelector('#loader');
 const cat = [
   {
     title: 'Cojin - cama para gatos',
-    price: '$ 74.990',
+    price: '$ 10.990',
     type: 'cat'
   },
   {
@@ -193,7 +193,7 @@ const generateFilters = () => {
         imageSrc = './src/assets/img/all_avatar';
     }
     const filterCard = `
-      <a href='#${label == 'Contacto' ? 'contact' : 'none'}'>
+      <a href='#${label == 'Contacto' ? 'contact' : 'home_'}'>
         <div class="filter-card" onclick="applyFilters('${id}')">
           <img src="${imageSrc}.png" alt="${label}">
           <p>${label}</p>
@@ -222,7 +222,7 @@ const applyFilters = (id) => {
         break;
       default:
         getArticles([...cat, ...dog, ...rabbit]);
-        titleCatalog.textContent = 'Todos';
+        titleCatalog.textContent = 'Todos los productos';
         break;
     }
   }, 500);
@@ -243,13 +243,15 @@ const checkViewport = (resize)=> {
       home.style.overflow = 'hidden';
       contentContainer.style.opacity = '0';
     } else {
-      home.style.overflow = 'scroll';
+      home.style.overflowY = 'scroll';      
+      home.style.overflowX = 'hidden';
       contentContainer.style.opacity = '1';
     }
   } else {
     sideContainer.classList.remove('slide-in-bottom');
     sideContainer.classList.add('slide-out-bottom');
-    home.style.overflow = 'scroll';
+    home.style.overflowY = 'scroll';    
+    home.style.overflowX = 'hidden';
     contentContainer.style.opacity = '1';
   }
 }
@@ -273,10 +275,11 @@ const init = async () => {
   showLoader();
   getArticles([...cat, ...dog, ...rabbit]);
   generateFilters('all-filter');
-  navToggle.checked = true;
-  titleCatalog.textContent = 'Todos';
+  navToggle.checked = false;
+  titleCatalog.textContent = 'Todos los productos';
   sideContainer.classList.remove('hidden');
   sideContainer.classList.add('side-container');
+  checkViewport()
 };
 
 // Listeners

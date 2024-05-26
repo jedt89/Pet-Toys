@@ -79,11 +79,12 @@ a {
     font-style: normal;
     font-size: 2.5rem;
     cursor: pointer;
+    animation: random-colors 30s infinite ease-in-out;
   }
 }
 
 .nav-title:hover h2 {
-    color: orange;
+  color: orange;
 }
 
 .nav-actions {
@@ -166,7 +167,7 @@ a {
   border-radius: 10px;
   color: #69b4ff;
   text-transform: capitalize;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(10px);
   padding: 1rem;
   width: 75%;
@@ -200,7 +201,7 @@ a {
   padding: 0rem 1rem;
   width: fit-content;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(10px);
   margin-bottom: 2.5rem;
   font-family: 'Protest Riot', sans-serif;
@@ -225,7 +226,7 @@ a {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(10px);
   padding: 1rem 0.5rem;
 
@@ -373,6 +374,18 @@ a {
 }
 
 /* Animations */
+.slide-in-bottom {
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  opacity: 1;
+  height: auto;
+}
+
+.slide-out-bottom {
+  animation: slide-out-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  opacity: 0;
+  height: auto;
+}
+
 .toggle {
   --bg-toggle: hsl(0, 0%, 96%);
   --bg-circle: hsl(96, 85%, 34%);
@@ -423,58 +436,56 @@ a {
   transform: rotate(-20deg);
 }
 
-#check-filter:checked+.toggle>.toggle__circle {
-  margin-left: calc(75px - (0.3rem * 2) - 50px);
-}
-
-#check-filter:checked+.toggle {
+#check-filter:checked + .toggle {
   --bg-toggle: hsl(96, 85%, 34%);
   --bg-circle: hsl(0, 0%, 96%);
 }
 
-.wobble-hor-bottom {
-  animation: wobble-hor-bottom 1s both;
-}
+#check-filter:checked + .toggle > .toggle__circle { margin-left: calc(75px - (0.3rem * 2) - 50px); }
 
-.jello-horizontal {
-  animation: jello-horizontal 0.9s both;
-}
+.fade-in { animation: fade-in 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both; }
 
-.slide-left {
-  animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
+.fade-out { animation: fade-out 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both; }
 
-.shake-bottom {
-  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
-}
+.wobble-hor-bottom { animation: wobble-hor-bottom 1s both; }
 
-.rotate-center {
-  animation: rotate-center 0.6s ease-in-out both;
-}
+.slide-left { animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
-.slide-in-bottom {
-  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  opacity: 1;
-  height: auto;
-}
+.shake-bottom { animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both; }
 
-.slide-out-bottom {
-  animation: slide-out-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  opacity: 0;
-  height: auto;
-}
+.rotate-center { animation: rotate-center 0.6s ease-in-out both; }
 
-.rotate-center {
-  animation: rotate-center 0.6s ease-in-out both;
-}
-
-@keyframes rotate-center {
-  0% {
-    transform: rotate(0);
-  }
-
+@keyframes random-colors {
+  0%,
   100% {
-    transform: rotate(360deg);
+    color: red;
+  }
+  10% {
+    color: orange;
+  }
+  20% {
+    color: blue;
+  }
+  30% {
+    color: indigo;
+  }
+  40% {
+    color: yellow;
+  }
+  50% {
+    color: violet;
+  }
+  60% {
+    color: purple;
+  }
+  70% {
+    color: green;
+  }
+  80% {
+    color: pink;
+  }
+  90% {
+    color: cyan;
   }
 }
 
@@ -502,36 +513,6 @@ a {
   }
 }
 
-@keyframes jello-horizontal {
-  0% {
-    transform: scale3d(1, 1, 1);
-  }
-
-  30% {
-    transform: scale3d(1.25, 0.75, 1);
-  }
-
-  40% {
-    transform: scale3d(0.75, 1.25, 1);
-  }
-
-  50% {
-    transform: scale3d(1.15, 0.85, 1);
-  }
-
-  65% {
-    transform: scale3d(0.95, 1.05, 1);
-  }
-
-  75% {
-    transform: scale3d(1.05, 0.95, 1);
-  }
-
-  100% {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
 @keyframes rotate-center {
   0% {
     transform: rotate(0);
@@ -543,7 +524,6 @@ a {
 }
 
 @keyframes shake-bottom {
-
   0%,
   100% {
     transform: rotate(0deg);
@@ -586,7 +566,6 @@ a {
 }
 
 @keyframes wobble-hor-bottom {
-
   0%,
   100% {
     transform: translateX(0);
@@ -614,10 +593,6 @@ a {
   }
 }
 
-.fade-in {
-  animation: fade-in 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -628,9 +603,6 @@ a {
   }
 }
 
-.fade-out {
-  animation: fade-out 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
 
 @keyframes fade-out {
   0% {
@@ -642,6 +614,7 @@ a {
   }
 }
 
+/* Responsive design */
 @media screen and (width <= 320px) {
   .side-container {
     top: 11rem;
